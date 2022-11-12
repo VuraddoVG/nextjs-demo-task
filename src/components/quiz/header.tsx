@@ -1,21 +1,24 @@
 import { Heading, Text } from "@chakra-ui/react";
-import { colors } from "../../theme/foundations";
 
 const HEADING_SIZES = ["xl", "3xl", "5xl"];
-const SUB_TEXT = ["sm", "md", "xl"];
+const SUB_TEXT_SIZES = ["sm", "md", "xl"];
 
-export function Header(props: any) {
-  const { header, subHeader, isGrey } = props;
+interface Props {
+  header: string;
+  subHeader: string;
+  isGrey?: boolean;
+}
 
+export function Header({ header, subHeader, isGrey }: Props) {
   return (
     <>
-      <Heading fontSize={HEADING_SIZES} fontWeight={"bold"}>
+      <Heading fontSize={HEADING_SIZES} fontWeight="bold">
         {header}
       </Heading>
       <Text
-        fontSize={SUB_TEXT}
+        fontSize={SUB_TEXT_SIZES}
         fontWeight={500}
-        color={isGrey ? colors.SUB_TEXT : "black"}
+        color={isGrey ? "SUB_TEXT" : "black"}
       >
         {subHeader}
       </Text>

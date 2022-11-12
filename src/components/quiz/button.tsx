@@ -1,8 +1,6 @@
 import { chakra, Text, useCheckbox } from "@chakra-ui/react";
 
-import { colors } from "../../theme/foundations";
-
-export function CustomCheckbox(props: any) {
+export function QuizButton(props: any) {
   const { state, getInputProps, getLabelProps, htmlProps } = useCheckbox(props);
 
   return (
@@ -12,7 +10,7 @@ export function CustomCheckbox(props: any) {
       alignItems="center"
       gridColumnGap={2}
       maxW="40"
-      bg={state.isChecked ? colors.ACTIVE_BADGE : colors.LIGHT_GREY}
+      bg={state.isChecked ? "ACTIVE_BADGE" : "LIGHT_GREY"}
       rounded="lg"
       px={3}
       py={1}
@@ -20,7 +18,7 @@ export function CustomCheckbox(props: any) {
       {...htmlProps}
     >
       <input {...getInputProps()} hidden />
-      <Text color={colors.TEXT} fontWeight={500} {...getLabelProps()}>
+      <Text color="TEXT" fontWeight={500} {...getLabelProps()}>
         {props.value}
       </Text>
     </chakra.label>

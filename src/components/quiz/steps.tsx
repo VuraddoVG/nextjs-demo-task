@@ -8,46 +8,69 @@ import {
   Tabs,
   Text,
   useCheckboxGroup,
+  useRadioGroup,
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
 
-import { colors } from "../../theme/foundations";
-import { CustomCheckbox } from "./checkbox";
+import { QuizButton } from "./button";
 
-export function Steps(props: any) {
-  const { tabIndex, setTabIndex, handleChangeChoices } = props;
+interface Props {
+  tabIndex: number;
+  setTabIndex: Function;
+  handleChangeChoices: Function;
+}
 
-  const { value, setValue, getCheckboxProps } = useCheckboxGroup({
+export function Steps({ tabIndex, setTabIndex, handleChangeChoices }: Props) {
+  const {
+    value: checkboxValue,
+    setValue: setCheckboxValue,
+    getCheckboxProps,
+  } = useCheckboxGroup({
     defaultValue: [],
   });
 
-  function quizTab(headline: string, options: string[] | number[]) {
+  const {
+    value: radioValue,
+    setValue: setRadioValue,
+    getRadioProps,
+    getRootProps,
+  } = useRadioGroup({
+    defaultValue: "",
+  });
+
+  function quizTab(
+    headline: string,
+    options: string[] | number[],
+    isRadio = true
+  ) {
     return (
-      <Box>
-        <Text color={colors.TEXT} fontWeight={500}>
+      <Box {...getRootProps()}>
+        <Text color="TEXT" fontWeight={500}>
           {headline}
         </Text>
-        <Wrap spacing="24px" p={"20px 10px 20px 0px"}>
+        <Wrap spacing="24px" p="20px 10px 20px 0px">
           {options.map((option, index) => {
             return (
               <WrapItem key={index}>
-                <CustomCheckbox
-                  key={index}
-                  {...getCheckboxProps({ value: option })}
-                />
+                {isRadio ? (
+                  <QuizButton {...getRadioProps({ value: option })} />
+                ) : (
+                  <QuizButton {...getCheckboxProps({ value: option })} />
+                )}
               </WrapItem>
             );
           })}
         </Wrap>
         <Button
-          isDisabled={value.length < 1}
+          isDisabled={isRadio ? radioValue === "" : checkboxValue.length < 1}
           w="250px"
-          sx={{ color: "white", bg: colors.BUTTON }}
-          _hover={{ bg: colors.ACTIVE_DOT }}
+          color="white"
+          bg="BUTTON"
+          _hover={{ bg: "ACTIVE_DOT" }}
           onClick={() => {
-            handleChangeChoices(tabIndex, value);
-            setValue([]);
+            handleChangeChoices(tabIndex, isRadio ? radioValue : checkboxValue);
+            isRadio ? setRadioValue("") : setCheckboxValue([]);
             setTabIndex(tabIndex + 1);
           }}
         >
@@ -75,15 +98,19 @@ export function Steps(props: any) {
       ]),
     },
     {
-      content: quizTab("I use following aplications:", [
-        "Twitter",
-        "Facebook",
-        "Instagram",
-        "Discord",
-        "LinkedIn",
-        "Calendar",
-        "Zoom",
-      ]),
+      content: quizTab(
+        "I use following aplications:",
+        [
+          "Twitter",
+          "Facebook",
+          "Instagram",
+          "Discord",
+          "LinkedIn",
+          "Calendar",
+          "Zoom",
+        ],
+        false
+      ),
     },
   ];
 
@@ -97,20 +124,23 @@ export function Steps(props: any) {
       <TabList>
         {quizTabs.map((_, index) => (
           <Tab
-            key={index}
-            w={"30px"}
-            h={"30px"}
-            m={"5px"}
-            transition={"0.5s"}
-            sx={{ color: colors.TEXT, bg: colors.LIGHT_GREY }}
-            _selected={{ bg: colors.ACTIVE_DOT }}
             isDisabled={index !== tabIndex}
+            key={index}
+            w="30px"
+            h="30px"
+            m="5px"
+            transition="0.5s"
+            color="TEXT"
+            bg="LIGHT_GREY"
+            cursor="default"
+            _disabled={{ cursor: "default" }}
+            _selected={{ bg: "ACTIVE_DOT" }}
           />
         ))}
       </TabList>
       <TabPanels maxW="700px">
         {quizTabs.map((tab, index) => (
-          <TabPanel key={index} p={"50px 10px 20px 0px"}>
+          <TabPanel key={index} p="50px 10px 20px 0px">
             {tab.content}
           </TabPanel>
         ))}
