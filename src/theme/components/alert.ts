@@ -6,6 +6,8 @@ import {
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(alertAnatomy.keys);
+const FW = ['8px', '12px', '16px'];
+const LH = [0.9, 1.2, 1.5];
 
 const baseStyle = definePartsStyle({
   container: {
@@ -23,10 +25,13 @@ const baseStyle = definePartsStyle({
   },
   title: {
     fontWeight: 'bold',
-    fontSize: 'lg'
+    fontSize: [...FW, '20px'],
+    lineHeight: LH
   },
   description: {
-    fontWeight: 'medium'
+    fontWeight: 'medium',
+    fontSize: FW,
+    lineHeight: LH
   }
 });
 

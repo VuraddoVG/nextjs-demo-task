@@ -7,7 +7,9 @@ export const overrides = {
         bg: 'BG',
         color: 'TEXT',
         padding: 0,
-        margin: 0
+        margin: 0,
+        h: '100vh',
+        w: '100vw'
       },
       '*': {
         boxSizing: 'border-box'

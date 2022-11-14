@@ -1,7 +1,7 @@
-import { Box, Button, Stack, Text } from '@chakra-ui/react';
+import { Button, Stack, Text } from '@chakra-ui/react';
 
-const HEADING_SIZES = ['16px', '17px', '18px'];
-const SUB_TEXT_SIZES = ['14px', '15px', '16px'];
+const HEADING_SIZES = ['14px', '16px', '18px'];
+const SUB_TEXT_SIZES = ['10px', '12px', '14px'];
 
 export function Promo() {
   return (

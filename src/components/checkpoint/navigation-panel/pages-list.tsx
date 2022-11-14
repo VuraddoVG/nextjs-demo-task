@@ -10,6 +10,7 @@ const ICONS = [
   ICONS_MUI.FOLDER
 ];
 const NAMES = ['Dashboard', 'Checkpoint', 'Spring Cleaner', 'Smart Folders'];
+const TEXT_SIZES = ['8px', '12px', '16px'];
 
 export function PagesList() {
   const [buttonId, setButtonId] = useState(1);
@@ -21,9 +22,10 @@ export function PagesList() {
           <Button
             key={index}
             w='100%'
-            leftIcon={<Icon />}
+            fontSize={TEXT_SIZES}
             bg='DASHBOARD_BG'
             justifyContent='start'
+            leftIcon={<Icon />}
             _hover={{ bg: 'SUB_TEXT' }}
             _active={{ bg: 'TEXT' }}
             isActive={buttonId === index}

@@ -10,11 +10,12 @@ export function NavigationPanel() {
   return (
     <Stack
       h='100%'
-      spacing='24px'
-      p='15px'
+      spacing={['8px', '10px', '24px']}
+      p={['4px', '8px', '10px', '15px']}
       bg='DASHBOARD_BG'
       color='LIGHT_GREY'
       fontWeight='semibold'
+      overflow='clip visible'
     >
       <UserSection />
       <SearchInput />
