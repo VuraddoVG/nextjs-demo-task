@@ -1,6 +1,6 @@
 import { chakra, Text, useCheckbox } from '@chakra-ui/react';
 
-export function QuizButton(props: any) {
+export function QuizButton({ props }: any) {
   const { state, getInputProps, getLabelProps, htmlProps } = useCheckbox(props);
 
   return (

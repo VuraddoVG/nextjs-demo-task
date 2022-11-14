@@ -6,6 +6,7 @@ import { Header } from './header';
 import { Steps } from './steps';
 
 const PADDING_TOP = ['15px', '50px', '100px'];
+const QUIZ_FILEDS = ['email', 'work', 'aplications'];
 
 export function Quiz() {
   const [tabIndex, setTabIndex] = useState(0);
@@ -16,7 +17,7 @@ export function Quiz() {
   });
 
   const handleChangeChoices = (id: number, options: (string | number)[]) => {
-    const name = ['email', 'work', 'aplications'][id];
+    const name = QUIZ_FILEDS[id];
 
     setChoices((prevChoices) => ({
       ...prevChoices,

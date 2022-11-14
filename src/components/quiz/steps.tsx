@@ -10,7 +10,7 @@ import {
   useCheckboxGroup,
   useRadioGroup,
   Wrap,
-  WrapItem,
+  WrapItem
 } from '@chakra-ui/react';
 
 import { QuizButton } from './button';
@@ -25,18 +25,18 @@ export function Steps({ tabIndex, setTabIndex, handleChangeChoices }: Props) {
   const {
     value: checkboxValue,
     setValue: setCheckboxValue,
-    getCheckboxProps,
+    getCheckboxProps
   } = useCheckboxGroup({
-    defaultValue: [],
+    defaultValue: []
   });
 
   const {
     value: radioValue,
     setValue: setRadioValue,
     getRadioProps,
-    getRootProps,
+    getRootProps
   } = useRadioGroup({
-    defaultValue: '',
+    defaultValue: ''
   });
 
   function quizTab(
@@ -53,11 +53,13 @@ export function Steps({ tabIndex, setTabIndex, handleChangeChoices }: Props) {
           {options.map((option, index) => {
             return (
               <WrapItem key={index}>
-                {isRadio ? (
-                  <QuizButton {...getRadioProps({ value: option })} />
-                ) : (
-                  <QuizButton {...getCheckboxProps({ value: option })} />
-                )}
+                <QuizButton
+                  props={
+                    isRadio
+                      ? getRadioProps({ value: option })
+                      : getCheckboxProps({ value: option })
+                  }
+                />
               </WrapItem>
             );
           })}
@@ -85,8 +87,8 @@ export function Steps({ tabIndex, setTabIndex, handleChangeChoices }: Props) {
       content: quizTab('My email address is mainly usedd for:', [
         'Personal',
         'Work',
-        'Both',
-      ]),
+        'Both'
+      ])
     },
     {
       content: quizTab('My work is in following area:', [
@@ -94,8 +96,8 @@ export function Steps({ tabIndex, setTabIndex, handleChangeChoices }: Props) {
         'Education',
         'Business',
         'Government',
-        'Other',
-      ]),
+        'Other'
+      ])
     },
     {
       content: quizTab(
@@ -107,11 +109,11 @@ export function Steps({ tabIndex, setTabIndex, handleChangeChoices }: Props) {
           'Discord',
           'LinkedIn',
           'Calendar',
-          'Zoom',
+          'Zoom'
         ],
         false
-      ),
-    },
+      )
+    }
   ];
 
   return (
