@@ -9,7 +9,7 @@ import {
   Text
 } from '@chakra-ui/react';
 
-import { BlankAvatar } from './blank-avatar';
+import { BlankAvatar } from '../../blank-avatar';
 
 const AVATAR_SIZES = ['26px', '38px', '52px'];
 const HEADING_SIZES = ['14px', '15px', '16px'];
@@ -24,12 +24,12 @@ export function UserSection() {
           alignSelf='center'
           justifyContent='space-between'
         >
-          <HStack>
+          <HStack spacing='10px'>
             <BlankAvatar
               {...{
                 w: AVATAR_SIZES,
                 h: AVATAR_SIZES,
-                borderRadius: '50px',
+                borderRadius: '25px',
                 bg: 'EMAIL_SUBJECT',
                 color: 'SUB_TEXT'
               }}
